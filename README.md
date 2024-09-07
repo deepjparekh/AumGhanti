@@ -2,6 +2,10 @@
 This is a free to use, open sourced Android and iOS app aimed to mimick a Hindu Ghanti functionality for religious, spiritual use-cases.
 Just shake your phone like shaking a ghanti and listen to the divine bell aum humming sound.
 
+## Demo
+
+https://github.com/user-attachments/assets/e57554e3-9306-4555-afb9-ec5de7fbeff5
+
 ## Project structure 
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
