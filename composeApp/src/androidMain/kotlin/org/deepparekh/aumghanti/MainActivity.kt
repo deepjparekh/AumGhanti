@@ -29,7 +29,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sensorManager = GhantiSensorManager(this)
-        mediaPlayer = MediaPlayer.create(this, R.raw.bell)
         lifecycle.addObserver(sensorManager)
 
         setContent {
@@ -41,13 +40,16 @@ class MainActivity : ComponentActivity() {
             .launchIn(lifecycle.coroutineScope)
     }
 
+    override fun onStart() {
+        super.onStart()
+        mediaPlayer = MediaPlayer.create(this, R.raw.bell)
+    }
+
     override fun onStop() {
         super.onStop()
-        try {
-            mediaPlayer?.stop()
-        } catch (e: Exception) {
-            Log.e(TAG, "caught exception $e while stopping play")
-        }
+        Log.d(TAG, "onStop")
+        stopAndPreparePlayer()
+        mediaPlayer = null
         clearBellPlayingJob()
     }
 
@@ -68,14 +70,18 @@ class MainActivity : ComponentActivity() {
         clearBellPlayingJob()
         bellPlayingJob = lifecycle.coroutineScope.launch {
             delay(delay)
-            try {
-                Log.d(TAG, "stop playing bell after timeout")
-                mediaPlayer?.stop()
-                Log.d(TAG, "re-preparing player for next play")
-                mediaPlayer?.prepare()
-            } catch (exception: Exception) {
-                Log.e(TAG, "reAttachBellPlayingJob caught exception $exception")
-            }
+            stopAndPreparePlayer()
+        }
+    }
+
+    private fun stopAndPreparePlayer() {
+        try {
+            Log.d(TAG, "stop playing bell after timeout")
+            mediaPlayer?.stop()
+            Log.d(TAG, "re-preparing player for next play")
+            mediaPlayer?.prepare()
+        } catch (exception: Exception) {
+            Log.e(TAG, "stopAndPreparePlayer caught exception $exception")
         }
     }
 
