@@ -18,11 +18,9 @@ fun AumGhanti(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            // todo: make this honor system theme
             .background(color = Color.White)
     ) {
         Image(
-            // todo: remove white background from image asset
             painter = painterResource(Res.drawable.ghanti_image),
             contentDescription = "Aum ghanti image",
             modifier = Modifier
