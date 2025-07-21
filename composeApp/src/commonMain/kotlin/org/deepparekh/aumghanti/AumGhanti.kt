@@ -12,9 +12,11 @@ import androidx.compose.ui.unit.dp
 import aumghanti.composeapp.generated.resources.Res
 import aumghanti.composeapp.generated.resources.ghanti_image
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun AumGhanti(modifier: Modifier = Modifier) {
+    val viewModel = koinViewModel<GhantiViewModel>()
     Box(
         modifier = modifier
             .fillMaxSize()
