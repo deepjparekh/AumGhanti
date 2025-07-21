@@ -2,6 +2,7 @@ package org.deepparekh.aumghanti
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +16,7 @@ class GhantiViewModel(
 
     private companion object {
         const val BELL_PLAYING_TIMEOUT_MILLIS = 300L
-        const val BELL_IDLE_TIMEOUT_MILLIS = 1000L
+        const val BELL_IDLE_TIMEOUT_MILLIS = 1500L
     }
 
     private var bellPlayingJob: Job? = null
@@ -27,10 +28,13 @@ class GhantiViewModel(
     }
 
     private fun handleShake() {
+        Logger.d { "handleShake" }
         if (ghantiMediaPlayer.isPlaying.not()) {
+            Logger.d { "ghantiMediaPlayer start" }
             ghantiMediaPlayer.start()
             reAttachBellPlayingJob(BELL_IDLE_TIMEOUT_MILLIS)
         } else {
+            Logger.d { "ghantiMediaPlayer continue" }
             reAttachBellPlayingJob(BELL_PLAYING_TIMEOUT_MILLIS)
         }
     }
@@ -45,10 +49,11 @@ class GhantiViewModel(
 
     private fun stopAndPreparePlayer() {
         try {
+            Logger.d { "ghantiMediaPlayer stopAndPreparePlayer" }
             ghantiMediaPlayer.stop()
             ghantiMediaPlayer.prepare()
         } catch (exception: Exception) {
-
+            Logger.e { "stopAndPreparePlayer error $exception" }
         }
     }
 }

@@ -8,5 +8,10 @@
     "moduleId": "org.jetbrains.compose.ui:ui-uikit:1.8.2",
     "file": "/Users/deepjparekh/Desktop/projects/AumGhanti/.kotlin/metadata/kotlinTransformedCInteropMetadataLibraries/org.jetbrains.compose.ui-ui-uikit-1.8.2-uikitMain-cinterop/org.jetbrains.compose.ui_ui-uikit-cinterop-utils-RVQtSg.klib",
     "sourceSetName": "uikitMain"
+  },
+  {
+    "moduleId": "co.touchlab:kermit-core:2.0.6",
+    "file": "/Users/deepjparekh/Desktop/projects/AumGhanti/.kotlin/metadata/kotlinTransformedCInteropMetadataLibraries/co.touchlab-kermit-core-2.0.6-iosMain-cinterop/co.touchlab_kermit-core-cinterop-os_log-bp7AVQ.klib",
+    "sourceSetName": "iosMain"
   }
 ]
